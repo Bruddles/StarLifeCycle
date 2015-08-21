@@ -1,0 +1,43 @@
+/* CSS file placeholder. */
+#title {
+  margin: 0 auto;
+}
+
+.starContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /*border: 1px solid green;*/
+}
+
+.starImageContainer {
+  background-color: black;
+  /*border: 1px solid red;*/
+  height: 200px;
+  float: left;
+  flex-grow: 1;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.starInfoContainer {
+  width: 25%;
+  /*border: 1px solid blue;*/
+  float: right;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.starImage{
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+#starMassSlider {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
