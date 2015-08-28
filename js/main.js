@@ -17,19 +17,20 @@ require(['stars', 'jQuery', 'THREE'], function(stars, $, THREE){
       scene = new THREE.Scene(),
       camera,
       renderer,
-      geometry,
-      material,
+      starGeometry,
+      starMaterial,
       sphere;
       
-  createStarView($('.starImageContainer'), star);
-  updateStarView(star);
+  createScene($('.starImageContainer'));
+  createStar(star);
+  updateStar(star);
   
   $('#starMassSlider').change(function(){
     star.calculateProperties($(this).val());
-    updateStarView(star);
+    updateStar(star);
   });
   
-  function createStarView(container, star){
+  function createScene(container){
     var width = $(container).css('width').slice(0, -2),
         height = $(container).css('height').slice(0, -2);
     scene = new THREE.Scene();
@@ -42,15 +43,17 @@ require(['stars', 'jQuery', 'THREE'], function(stars, $, THREE){
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(width, height);
     $(container).append(renderer.domElement);
-    
-    geometry = new THREE.SphereGeometry(star.solarRadius , 32, 32);
-    material = new THREE.MeshBasicMaterial({color: star.solarClass});
-    sphere = new THREE.Mesh(geometry, material);
+  }
+  
+  function createStar(star){
+    starGeometry = new THREE.SpherestarGeometry(star.solarRadius, 32, 32);
+    starMaterial = new THREE.MeshBasicMaterial({color: star.solarClass});
+    sphere = new THREE.Mesh(starGeometry, starMaterial);
     scene.add(sphere);
-    
-    sphere.geometry.dynamic = true;
-    sphere.geometry.verticesNeedUpdate = true;
-    sphere.geometry.normalsNeedUpdate = true;
+        
+    sphere.starGeometry.dynamic = true;
+    sphere.starGeometry.verticesNeedUpdate = true;
+    sphere.starGeometry.normalsNeedUpdate = true;
   }
   
   function animateStarView(){
@@ -58,7 +61,7 @@ require(['stars', 'jQuery', 'THREE'], function(stars, $, THREE){
     renderer.render(scene, camera);
   }
   
-  function updateStarView(star){
+  function updateStar(star){
     var scale = star.solarRadius,
         rgb = hexToRGB(star.solarClass);
         
@@ -71,14 +74,12 @@ require(['stars', 'jQuery', 'THREE'], function(stars, $, THREE){
     sphere.scale.y = scale;
     sphere.scale.z = scale;  
     
-    sphere.material.color.r = rgb.r;
-    sphere.material.color.g = rgb.g;
-    sphere.material.color.b = rgb.b;
+    sphere.starMaterial.color.r = rgb.r;
+    sphere.starMaterial.color.g = rgb.g;
+    sphere.starMaterial.color.b = rgb.b;
     
     animateStarView();
-  
-    // $('.starImage').css('background-color', star.solarClass );
-    
+      
     function hexToRGB(hex){
       hex = (hex.charAt(0)=="#") ? hex.substring(1,7):hex;
       return {
