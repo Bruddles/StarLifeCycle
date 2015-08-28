@@ -53,7 +53,7 @@ define([], function(){
       x = 3200;
       a = 1;
     }
-    return x*Math.pow(this.solarMass, a).toFixed(2);
+    return (x*Math.pow(this.solarMass, a)).toFixed(2);
   };
   exports.MainSequenceStar.prototype.massRadius = function(){
     return Math.pow(this.solarMass, 0.78).toFixed(2);

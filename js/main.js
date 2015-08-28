@@ -62,8 +62,6 @@ require(['stars', 'jQuery', 'THREE'], function(stars, $, THREE){
     var scale = star.solarRadius,
         rgb = hexToRGB(star.solarClass);
         
-    console.log('hex: ' + star.solarClass);
-    console.log('r: ' + rgb.r + ' g: ' + rgb.g + ' b: ' + rgb.b);
     $('#starMassVariable').text(star.solarMass);
     $('#starRadiusVariable').text(star.solarRadius);
     $('#starLuminosityVariable').text(star.solarLuminosity);
